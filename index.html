@@ -54,10 +54,7 @@
 
     <div id="button_div" class="relative w-full h-64 mt-6">
         <button id="yesButton" onclick="Done()" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 text-white bg-green-500 rounded-full shadow-lg hover:bg-green-600">Yes 😍</button>
-        <button id="butt1" onmouseover="show_magic('butt1', 'butt2')" class="absolute top-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">No 🚫</button>
-        <button id="butt2" onmouseover="show_magic('butt2', 'butt3')" class="hidden absolute top-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Abhi Bhi Nahi? 🥺</button>
-        <button id="butt3" onmouseover="show_magic('butt3', 'butt4')" class="hidden absolute bottom-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Soch Lo! 🤔</button>
-        <button id="butt4" onmouseover="show_magic('butt4', 'butt1')" class="hidden absolute bottom-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Fir Se Soch Lo? 😥</button>
+        <button id="noButton" onclick="changeNoResponse()" class="absolute top-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">No 🚫</button>
     </div>
 
     <div id="footer" class="absolute bottom-4 text-white text-sm">
@@ -65,15 +62,31 @@
     </div>
 
     <script>
+        let noResponses = [
+            "No 🚫", 
+            "Abhi Bhi Nahi? 🥺", 
+            "Soch Lo! 🤔", 
+            "Fir Se Soch Lo? 😥", 
+            "Really No? 🤨", 
+            "Are You Sure? 😏", 
+            "I Am Not Sure 😓", 
+            "Nahi Yaar, No! 🙅", 
+            "I’m Not Ready Yet 😣", 
+            "You’re Breaking My Heart 💔"
+        ];
+
+        let currentResponseIndex = 0;
+
         function Done() {
             document.getElementById("heading_div").style.backgroundColor = '#f87171'; // Tailwind red-400
             document.getElementById("heading_div").innerHTML = '<h1 class="text-xl font-bold text-white">I Love You Too! ❤️✨</h1>';
             showBalloonsAndCrackers();
         }
 
-        function show_magic(current, next) {
-            document.getElementById(current).style.display = 'none';
-            document.getElementById(next).style.display = 'block';
+        function changeNoResponse() {
+            // Cycle through the "No" responses
+            currentResponseIndex = (currentResponseIndex + 1) % noResponses.length;
+            document.getElementById("noButton").innerText = noResponses[currentResponseIndex];
         }
 
         function showBalloonsAndCrackers() {
