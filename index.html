@@ -40,10 +40,10 @@
         }
         .balloon, .cracker {
             position: absolute;
-            animation: floatUp 10s ease-in-out forwards;
+            animation: floatUp 20s ease-in-out forwards;
         }
         .cracker {
-            animation: floatSideways 10s ease-in-out forwards;
+            animation: floatSideways 20s ease-in-out forwards;
         }
     </style>
 </head>
@@ -55,9 +55,9 @@
     <div id="button_div" class="relative w-full h-64 mt-6">
         <button id="yesButton" onclick="Done()" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 text-white bg-green-500 rounded-full shadow-lg hover:bg-green-600">Yes 😍</button>
         <button id="butt1" onmouseover="show_magic('butt1', 'butt2')" class="absolute top-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">No 🚫</button>
-        <button id="butt2" onmouseover="show_magic('butt2', 'butt3')" class="hidden absolute top-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Really No? 🤔</button>
-        <button id="butt3" onmouseover="show_magic('butt3', 'butt4')" class="hidden absolute bottom-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Still No? 😭</button>
-        <button id="butt4" onmouseover="show_magic('butt4', 'butt1')" class="hidden absolute bottom-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Abhi Bhi Nahi? 🥺</button>
+        <button id="butt2" onmouseover="show_magic('butt2', 'butt3')" class="hidden absolute top-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Abhi Bhi Nahi? 🥺</button>
+        <button id="butt3" onmouseover="show_magic('butt3', 'butt4')" class="hidden absolute bottom-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Soch Lo! 🤔</button>
+        <button id="butt4" onmouseover="show_magic('butt4', 'butt1')" class="hidden absolute bottom-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Fir Se Soch Lo? 😥</button>
     </div>
 
     <div id="footer" class="absolute bottom-4 text-white text-sm">
@@ -78,8 +78,8 @@
 
         function showBalloonsAndCrackers() {
             // Create random emojis all over the screen
-            const emojiArray = ['🎈', '🎉', '🎊', '✨', '🔥', '💥', '🎆'];
-            const totalEmojis = 20; // Total number of emojis you want to display
+            const emojiArray = ['🎈', '🎉', '🎊', '✨', '🔥', '💥', '🎆', '💖', '🌟', '🌈', '🎶', '💫', '🍾', '🍀', '🌸', '🌺', '💐', '🍀'];
+            const totalEmojis = 30; // Total number of emojis you want to display
 
             for (let i = 0; i < totalEmojis; i++) {
                 const emoji = document.createElement('div');
@@ -101,8 +101,8 @@
                 // Apply animation
                 emoji.classList.add('balloon');
                 setTimeout(() => {
-                    emoji.remove(); // Remove emoji after 10 seconds
-                }, 10000); // Emojis disappear after 10 seconds
+                    emoji.remove(); // Remove emoji after 20 seconds
+                }, 20000); // Emojis disappear after 20 seconds
             }
         }
     </script>
