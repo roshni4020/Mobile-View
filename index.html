@@ -8,42 +8,42 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            overflow: hidden; /* To ensure emojis do not overflow the viewport */
         }
         @keyframes floatUp {
             0% {
-                transform: translateY(100%);
+                transform: translateY(100%) scale(0.5);
                 opacity: 0;
             }
             50% {
                 opacity: 1;
+                transform: translateY(-50%) scale(1);
             }
             100% {
-                transform: translateY(-200%);
+                transform: translateY(-200%) scale(1.5);
                 opacity: 0;
             }
         }
         @keyframes floatSideways {
             0% {
-                transform: translateX(-100%) translateY(100%);
+                transform: translateX(-100%) translateY(100%) scale(0.5);
                 opacity: 0;
             }
             50% {
                 opacity: 1;
+                transform: translateX(50%) translateY(-50%) scale(1);
             }
             100% {
-                transform: translateX(100%) translateY(-200%);
+                transform: translateX(200%) translateY(-200%) scale(1.5);
                 opacity: 0;
             }
         }
-        .balloon {
-            position: fixed;
-            bottom: 0;
-            animation: floatUp 3s ease-in-out forwards;
+        .balloon, .cracker {
+            position: absolute;
+            animation: floatUp 10s ease-in-out forwards;
         }
         .cracker {
-            position: fixed;
-            bottom: 0;
-            animation: floatSideways 3s ease-in-out forwards;
+            animation: floatSideways 10s ease-in-out forwards;
         }
     </style>
 </head>
@@ -58,21 +58,6 @@
         <button id="butt2" onmouseover="show_magic('butt2', 'butt3')" class="hidden absolute top-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Really No? 🤔</button>
         <button id="butt3" onmouseover="show_magic('butt3', 'butt4')" class="hidden absolute bottom-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Still No? 😭</button>
         <button id="butt4" onmouseover="show_magic('butt4', 'butt1')" class="hidden absolute bottom-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Abhi Bhi Nahi? 🥺</button>
-    </div>
-
-    <div id="balloon-container" class="hidden">
-        <div class="balloon text-2xl"><h1>🎈</h1></div>
-        <div class="balloon text-2xl" style="animation-delay: 0.5s;"><h1>🎉</h1></div>
-        <div class="balloon text-2xl" style="animation-delay: 1s;"><h1>🎊</h1></div>
-        <div class="balloon text-2xl" style="animation-delay: 1.5s;"><h1>🎈</h1></div>
-        <div class="balloon text-2xl" style="animation-delay: 2s;"><h1>🎉</h1></div>
-    </div>
-
-    <div id="cracker-container" class="hidden">
-        <div class="cracker text-2xl"><h1>✨</h1></div>
-        <div class="cracker text-2xl" style="animation-delay: 0.5s;"><h1>🔥</h1></div>
-        <div class="cracker text-2xl" style="animation-delay: 1s;"><h1>💥</h1></div>
-        <div class="cracker text-2xl" style="animation-delay: 1.5s;"><h1>🎆</h1></div>
     </div>
 
     <div id="footer" class="absolute bottom-4 text-white text-sm">
@@ -92,14 +77,33 @@
         }
 
         function showBalloonsAndCrackers() {
-            const balloonContainer = document.getElementById('balloon-container');
-            const crackerContainer = document.getElementById('cracker-container');
-            balloonContainer.classList.remove('hidden');
-            crackerContainer.classList.remove('hidden');
-            setTimeout(() => {
-                balloonContainer.classList.add('hidden');
-                crackerContainer.classList.add('hidden');
-            }, 3000); // Hide animations after 3 seconds
+            // Create random emojis all over the screen
+            const emojiArray = ['🎈', '🎉', '🎊', '✨', '🔥', '💥', '🎆'];
+            const totalEmojis = 20; // Total number of emojis you want to display
+
+            for (let i = 0; i < totalEmojis; i++) {
+                const emoji = document.createElement('div');
+                const randomEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+                const randomLeft = Math.random() * 100; // Random horizontal position (0-100%)
+                const randomTop = Math.random() * 100; // Random vertical position (0-100%)
+
+                emoji.classList.add('absolute', 'text-3xl');
+                emoji.style.left = `${randomLeft}%`;
+                emoji.style.top = `${randomTop}%`;
+                emoji.innerHTML = randomEmoji;
+
+                // Add animation delay for a staggered effect
+                emoji.style.animationDelay = `${Math.random() * 3}s`;
+
+                // Append emoji to body
+                document.body.appendChild(emoji);
+
+                // Apply animation
+                emoji.classList.add('balloon');
+                setTimeout(() => {
+                    emoji.remove(); // Remove emoji after 10 seconds
+                }, 10000); // Emojis disappear after 10 seconds
+            }
         }
     </script>
 </body>
