@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me? ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200%);
+                opacity: 0;
+            }
+        }
+        @keyframes floatSideways {
+            0% {
+                transform: translateX(-100%) translateY(100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%) translateY(-200%);
+                opacity: 0;
+            }
+        }
+        .balloon {
+            position: fixed;
+            bottom: 0;
+            animation: floatUp 3s ease-in-out forwards;
+        }
+        .cracker {
+            position: fixed;
+            bottom: 0;
+            animation: floatSideways 3s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-300 to-blue-300">
+    <div id="heading_div" class="flex items-center justify-center w-11/12 max-w-md p-4 bg-white rounded-lg shadow-lg">
+        <h1 class="text-xl font-bold text-gray-800">Do You Love Me? 💕</h1>
+    </div>
+
+    <div id="button_div" class="relative w-full h-64 mt-6">
+        <button id="yesButton" onclick="Done()" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 text-white bg-green-500 rounded-full shadow-lg hover:bg-green-600">Yes 😍</button>
+        <button id="butt1" onmouseover="show_magic('butt1', 'butt2')" class="absolute top-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">No 🚫</button>
+        <button id="butt2" onmouseover="show_magic('butt2', 'butt3')" class="hidden absolute top-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Really No? 🤔</button>
+        <button id="butt3" onmouseover="show_magic('butt3', 'butt4')" class="hidden absolute bottom-8 left-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Still No? 😭</button>
+        <button id="butt4" onmouseover="show_magic('butt4', 'butt1')" class="hidden absolute bottom-8 right-8 px-4 py-2 text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">Abhi Bhi Nahi? 🥺</button>
+    </div>
+
+    <div id="balloon-container" class="hidden">
+        <div class="balloon text-2xl">🎈</div>
+        <div class="balloon text-2xl" style="animation-delay: 0.5s;">🎉</div>
+        <div class="balloon text-2xl" style="animation-delay: 1s;">🎊</div>
+        <div class="balloon text-2xl" style="animation-delay: 1.5s;">🎈</div>
+        <div class="balloon text-2xl" style="animation-delay: 2s;">🎉</div>
+    </div>
+
+    <div id="cracker-container" class="hidden">
+        <div class="cracker text-2xl">✨</div>
+        <div class="cracker text-2xl" style="animation-delay: 0.5s;">🔥</div>
+        <div class="cracker text-2xl" style="animation-delay: 1s;">💥</div>
+        <div class="cracker text-2xl" style="animation-delay: 1.5s;">🎆</div>
+    </div>
+
+    <script>
+        function Done() {
+            document.getElementById("heading_div").style.backgroundColor = '#f87171'; // Tailwind red-400
+            document.getElementById("heading_div").innerHTML = '<h1 class="text-xl font-bold text-white">I Love You Too! ❤️✨</h1>';
+            showBalloonsAndCrackers();
+        }
+
+        function show_magic(current, next) {
+            document.getElementById(current).style.display = 'none';
+            document.getElementById(next).style.display = 'block';
+        }
+
+        function showBalloonsAndCrackers() {
+            const balloonContainer = document.getElementById('balloon-container');
+            const crackerContainer = document.getElementById('cracker-container');
+            balloonContainer.classList.remove('hidden');
+            crackerContainer.classList.remove('hidden');
+            setTimeout(() => {
+                balloonContainer.classList.add('hidden');
+                crackerContainer.classList.add('hidden');
+            }, 3000); // Hide animations after 3 seconds
+        }
+    </script>
+</body>
+</html>
